@@ -1,32 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:klawapplication/BottomNavigation.dart';
+import 'package:klawapplication/ChatSubject/LearnMore.dart';
 
-class Chat extends StatefulWidget {
-  const Chat({super.key});
+class AddCourse extends StatefulWidget {
+  const AddCourse({super.key});
 
   @override
-  State<Chat> createState() => _ChatState();
+  State<AddCourse> createState() => _AddCourseState();
 }
 
-class _ChatState extends State<Chat> {
+class _AddCourseState extends State<AddCourse> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        shape:StadiumBorder(),
-        onPressed: () {
-          // Action to perform on button press
-        },
-        backgroundColor: Colors.black, // Customize background color if needed
-        child: Icon(
-          Icons.add,
-          size: 32, // Adjust icon size
-          color: Colors.white, // Customize icon color if needed
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
       appBar: AppBar(
         backgroundColor: Color(0xFF006039),
         toolbarHeight: 70.h,
@@ -35,7 +22,7 @@ class _ChatState extends State<Chat> {
           Padding(
             padding: EdgeInsets.only(right: 10.w),
             child: Icon(
-              Icons.menu,
+              Icons.list,
               size: 38.sp,
               color: Color(0xFFD9D9D9),
             ),
@@ -53,10 +40,97 @@ class _ChatState extends State<Chat> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
+      body:SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 20.h),
+            SizedBox(height: 15.h),
+            SizedBox(
+              width: 340.w,
+              height: 43.h,
+              child: TextField(
+                cursorColor: Colors.black,
+                style: TextStyle(color: Colors.black,fontSize: 16.sp),
+                decoration: InputDecoration(suffixIcon: Icon(Icons.search,color:  Color(0xFF006039),),
+                  hintText: "Search",
+                  hintStyle: GoogleFonts.openSans(
+                    textStyle: TextStyle(
+                      color: Color(0xFF006039),
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  filled: true,
+                  fillColor:  Color(0xFFD9D9D9),
+                  focusColor:  Color(0xFFD9D9D9),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.r),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 10.w),
+                ),
+
+              ),
+            ),
+
+
+            SizedBox(height: 15.h),
+            Row(mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 136.w,
+                  height: 42.h,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFF00C677),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.r),
+                    ),
+                  ),child:  Row(mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                      'Filter ',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.openSans(
+                        textStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w400,
+                        height: 0.05.h,
+
+                      ),),
+                                  ),Icon(Icons.filter_alt_outlined,color: Colors.white,)
+                    ],
+                  ),
+                ),
+
+                SizedBox(width: 30.w),
+                Container(
+                  width: 136.w,
+                  height: 42.h,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFF00C677),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.r),
+                    ),
+                  ),child:  Row(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Sort by ',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.openSans(
+                        textStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w400,
+                          height: 0.05.h,
+
+                        ),),
+                    ),Icon(Icons.sort,color: Colors.white,)
+                  ],
+                ),
+                ),
+              ],
+            ),
+SizedBox(height: 19.h),
             Center(
               child: SizedBox(
                 height: 108 * 10,
@@ -145,27 +219,29 @@ class _ChatState extends State<Chat> {
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 130.w),
-                                  child: Container(
-                                    width: 101.w,
-                                    height: 29.h,
-                                    decoration: ShapeDecoration(
-                                      color: Color(0xFF00C677),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.r),
+                                GestureDetector(onTap: (){ Navigator.of(context).push(MaterialPageRoute(builder: (_)=> Learnmore()));},
+                                  child: Padding(
+                                    padding: EdgeInsets.only(left: 130.w),
+                                    child: Container(
+                                      width: 101.w,
+                                      height: 29.h,
+                                      decoration: ShapeDecoration(
+                                        color: Color(0xFF00C677),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(12.r),
+                                        ),
                                       ),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        'Chat',
-                                        style: GoogleFonts.inter(
-                                          textStyle: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 15.sp,
-                                            fontWeight: FontWeight.w700,
-                                            height: 0.h,
+                                      child: Center(
+                                        child: Text(
+                                          'Learn more',
+                                          style: GoogleFonts.inter(
+                                            textStyle: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15.sp,
+                                              fontWeight: FontWeight.w700,
+                                              height: 0.h,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -189,7 +265,7 @@ class _ChatState extends State<Chat> {
             ),
           ],
         ),
-      ),
+      ) ,
     );
   }
 }

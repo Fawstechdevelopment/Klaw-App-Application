@@ -65,6 +65,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
+            SizedBox(height: 10.h,),
             Center(
               child: Text(
                 'Enter your email and password',
@@ -79,7 +80,7 @@ class _LoginState extends State<Login> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 75.w, top: 32.h),
+              padding: EdgeInsets.only(left: 75.w, top: 62.h),
               child: SizedBox(
                 width: 140.w,
                 height: 26.h,
@@ -192,7 +193,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            SizedBox(height: 37.h),
+            SizedBox(height: 30.h),
             GestureDetector(
               onTap: () {
                 Navigator.of(context)
@@ -226,7 +227,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 10.h),
             Center(
               child: Text(
                 'OR',
@@ -240,7 +241,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 10.h),
             GestureDetector(onTap: () {
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (_) => LoginOtp()));
@@ -255,7 +256,7 @@ class _LoginState extends State<Login> {
                         borderRadius: BorderRadius.circular(5.r)),
                   ),
                   child: SizedBox(
-                    width: 57.w,
+                    width: 50.w,
                     height: 17.h,
                     child: Center(
                       child: Text(
@@ -273,11 +274,11 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            SizedBox(height: 66.h),
+            SizedBox(height: 46.h),
             Center(
               child: SizedBox(
                   width: 220.w,
-                  height: 18.h,
+                  height: 22.h,
                   child: Row(
                     children: [
                       Text(

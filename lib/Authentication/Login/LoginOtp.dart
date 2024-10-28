@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../BottomNavigation.dart';
+import '../ForgotPassword/ForgotPassword.dart';
+import '../SignUp_Pages/SignUpNumberFeild.dart';
+
 class LoginOtp extends StatefulWidget {
   const LoginOtp({super.key});
 
@@ -59,7 +63,7 @@ class _LoginOtpState extends State<LoginOtp> {
                   ),
                 ),
               ),
-            ),
+            ), SizedBox(height: 10.h),
             Center(
               child: Text(
                 'Enter your email and password',
@@ -74,7 +78,7 @@ class _LoginOtpState extends State<LoginOtp> {
               ),
             ),
             Padding(
-              padding:  EdgeInsets.only(left: 75.w,top: 32.h),
+              padding:  EdgeInsets.only(left: 75.w,top: 62.h),
               child: SizedBox(
                 width: 140.w,
                 height: 26.h,
@@ -144,7 +148,7 @@ class _LoginOtpState extends State<LoginOtp> {
                   decoration: InputDecoration(
                     fillColor: Colors.white,
                     filled: true,
-                    hintText: '**************',
+                    hintText: '*****',
                     hintStyle: GoogleFonts.inter(
                       textStyle: TextStyle(
                         color: Colors.black,
@@ -159,55 +163,62 @@ class _LoginOtpState extends State<LoginOtp> {
                 ),
               ),
             ),
-            Padding(
-              padding:  EdgeInsets.only(right: 60.w),
-              child: Align(alignment: Alignment.centerRight,
-                child: SizedBox(
-                  width: 128.w,
-                  height: 18.h,
-                  child: Opacity(
-                    opacity: 0.50.sp,
-                    child: Text(
-                      'ForgotPassword ?',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.inter(
-                        textStyle: TextStyle(
-                          color: Color(0xFF006039),
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                          height: 0.09.h,
-                        ),),
+            GestureDetector(onTap: (){ Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Forgotpassword() ));},
+              child: Padding(
+                padding:  EdgeInsets.only(right: 60.w),
+                child: Align(alignment: Alignment.centerRight,
+                  child: SizedBox(
+                    width: 128.w,
+                    height: 18.h,
+                    child: Opacity(
+                      opacity: 0.50.sp,
+                      child: Text(
+                        'ForgotPassword ?',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.inter(
+                          textStyle: TextStyle(
+                            color: Color(0xFF006039),
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
+                            height: 0.09.h,
+                          ),),
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
             SizedBox(height: 37.h),
-            Center(
-              child: Container(
-                width: 165.w,
-                height: 42.h,
-                decoration: ShapeDecoration(
-                  color: Color(0xFF006039),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
-                ),child: SizedBox(
-                width: 57.w,
-                height: 17.h,
-                child: Center(
-                  child: Text(
-                    'submit',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17.sp,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w400,
+            GestureDetector(  onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => Bottomnavigation()));
+            },
+              child: Center(
+                child: Container(
+                  width: 165.w,
+                  height: 42.h,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFF006039),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
+                  ),child: SizedBox(
+                  width: 57.w,
+                  height: 17.h,
+                  child: Center(
+                    child: Text(
+                      'submit',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17.sp,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
-                ),
-              ),),
+                ),),
+              ),
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 10.h),
             Center(
               child: Text(
                 'OR',
@@ -219,50 +230,55 @@ class _LoginOtpState extends State<LoginOtp> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),),
-            ),SizedBox(height: 20.h),
-            Center(
-              child: Container(
-                width: 165.w,
-                height: 42.h,
-                decoration: ShapeDecoration(
-                  color: Color(0xFF006039),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
-                ),child: SizedBox(
-                width: 57.w,
-                height: 17.h,
-                child: Center(
-                  child: Text(
-                    'Password',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17.sp,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w400,
+            ),SizedBox(height: 10.h),
+            GestureDetector(  onTap: () {
+              Navigator.of(context)
+                  .pop();
+            },
+              child: Center(
+                child: Container(
+                  width: 165.w,
+                  height: 42.h,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFF006039),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
+                  ),child: SizedBox(
+                  width: 57.w,
+                  height: 17.h,
+                  child: Center(
+                    child: Text(
+                      'Password',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17.sp,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
-                ),
-              ),),
+                ),),
+              ),
             ),
-            SizedBox(height: 66.h),
+            SizedBox(height: 46.h),
             Center(
               child: SizedBox(
                 width: 220.w,
-                height: 18.h,
-                child: Text.rich( textAlign: TextAlign.center,
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'Don’t have a account ? ',
-                        style: GoogleFonts.inter(
-                          textStyle: TextStyle(
-                            color: Color(0xFF006039),
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w500,
-                          ),),
-                      ),
-                      TextSpan(
-                        text: 'Sign up',
+                height: 22.h,
+                child:  Row(
+                  children: [
+                    Text(
+                      'Don’t have a account ? ',
+                      style: GoogleFonts.inter(
+                        textStyle: TextStyle(
+                          color: Color(0xFF006039),
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                        ),),
+                    ),
+                    GestureDetector(onTap: (){ Navigator.of(context).push(MaterialPageRoute(builder: (_)=> SignupNumberFeild()));},
+                      child: Text(
+                         'Sign up',
                         style: GoogleFonts.inter(
                           textStyle: TextStyle(
                             color: Color(0xFF006039),
@@ -270,9 +286,8 @@ class _LoginOtpState extends State<LoginOtp> {
                             fontWeight: FontWeight.w700,
                           ),),
                       ),
-                    ],
-                  ),
-
+                    ),
+                  ],
                 ),
               ),
             ),

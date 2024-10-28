@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:klawapplication/Chat.dart';
+import 'package:klawapplication/ChatSubject/ChatSubject.dart';
 import 'package:klawapplication/Home.dart';
 import 'package:klawapplication/Profile.dart';
 
@@ -13,7 +13,7 @@ class Bottomnavigation extends StatefulWidget {
 
 class _BottomnavigationState extends State<Bottomnavigation> {
   final screen = [
-    Chat(),
+    ChatSubject(),
     Home(),
     Profile(),
 

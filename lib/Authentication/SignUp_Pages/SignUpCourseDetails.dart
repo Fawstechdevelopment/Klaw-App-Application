@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:klawapplication/Authentication/Login/Login.dart';
 
 import '../../BottomNavigation.dart';
 
@@ -24,27 +25,26 @@ class _SignupcoursedetailsState extends State<Signupcoursedetails> {
           children: [
             SizedBox(height: 180.h), // Adjust top spacing as needed
             Center(
-              child: Container(
-                width: 155.w,
-                height: 155.h,
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.r)),
-                  image: const DecorationImage(
-                    image: AssetImage("assets/splash.png"),
-                    fit: BoxFit.cover,
+              child: Stack(
+                children: [
+                  SizedBox(width: 155.w,
+                    height: 215.h,
+                    child: Image.asset("assets/splash.png",  width: 155.w,
+                      height: 155.h,),
                   ),
-                ),
-              ),
-            ),
-            Text(
-              'KLAW',
-              style: GoogleFonts.inter(
-                textStyle: TextStyle(
-                  color: const Color(0xFF00C677),
-                  fontSize: 40.sp,
-                  fontWeight: FontWeight.w700,
-                ),
+                  Positioned(left: 18.w,top: 150.h,
+                    child: Text(
+                      'KLAW',
+                      style: GoogleFonts.inter(
+                        textStyle: TextStyle(
+                          color: const Color(0xFF00C677),
+                          fontSize: 40.sp,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             SizedBox(height: 40.h),
@@ -169,7 +169,7 @@ class _SignupcoursedetailsState extends State<Signupcoursedetails> {
                       ),
                     ),
                     SizedBox(height: 50.h),
-                    GestureDetector(onTap: (){ Navigator.of(context).push(MaterialPageRoute(builder: (_)=> Bottomnavigation()));},
+                    GestureDetector(onTap: (){ Navigator.of(context).push(MaterialPageRoute(builder: (_)=> Login()));},
                       child: Container(
                         width: 137.w,
                         height: 42.h,

@@ -24,29 +24,29 @@ class _SignupNumberFeildState extends State<SignupNumberFeild> {
           children: [
             SizedBox(height: 150.h), // Adjust top spacing as needed
             Center(
-              child: Container(
-                width: 155.w,
-                height: 155.h,
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.r)),
-                  image: const DecorationImage(
-                    image: AssetImage("assets/splash.png"),
-                    fit: BoxFit.cover,
+              child: Stack(
+                children: [
+                  SizedBox(width: 155.w,
+                    height: 215.h,
+                    child: Image.asset("assets/splash.png",  width: 155.w,
+                      height: 155.h,),
                   ),
-                ),
+                  Positioned(left: 18.w,top: 150.h,
+                    child: Text(
+                      'KLAW',
+                      style: GoogleFonts.inter(
+                        textStyle: TextStyle(
+                          color: const Color(0xFF00C677),
+                          fontSize: 40.sp,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            Text(
-              'KLAW',
-              style: GoogleFonts.inter(
-                textStyle: TextStyle(
-                  color: const Color(0xFF00C677),
-                  fontSize: 40.sp,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
+
             SizedBox(height: 80.h),
             Container(
               width: 412.w,

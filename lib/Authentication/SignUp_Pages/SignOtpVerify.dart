@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,6 +15,41 @@ class SignUpOtpverify extends StatefulWidget {
 }
 
 class _SignUpOtpverifyState extends State<SignUpOtpverify> {
+  static const int initialCountdown = 300; // 5 minutes in seconds (5 * 60)
+  int remainingTime = initialCountdown;
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    startTimer();
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
+  void startTimer() {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (remainingTime > 0) {
+        setState(() {
+          remainingTime--;
+        });
+      } else {
+        timer.cancel();
+        // You can add any action you want to trigger when the countdown finishes.
+      }
+    });
+  }
+
+  String formatTime(int seconds) {
+    final minutes = (seconds ~/ 60).toString().padLeft(2, '0');
+    final secs = (seconds % 60).toString().padLeft(2, '0');
+    return "$minutes:$secs";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,27 +62,26 @@ class _SignUpOtpverifyState extends State<SignUpOtpverify> {
           children: [
             SizedBox(height: 150.h), // Adjust top spacing as needed
             Center(
-              child: Container(
-                width: 155.w,
-                height: 155.h,
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.r)),
-                  image: const DecorationImage(
-                    image: AssetImage("assets/splash.png"),
-                    fit: BoxFit.cover,
+              child: Stack(
+                children: [
+                  SizedBox(width: 155.w,
+                    height: 215.h,
+                    child: Image.asset("assets/splash.png",  width: 155.w,
+                      height: 155.h,),
                   ),
-                ),
-              ),
-            ),
-            Text(
-              'KLAW',
-              style: GoogleFonts.inter(
-                textStyle: TextStyle(
-                  color: const Color(0xFF00C677),
-                  fontSize: 40.sp,
-                  fontWeight: FontWeight.w700,
-                ),
+                  Positioned(left: 18.w,top: 150.h,
+                    child: Text(
+                      'KLAW',
+                      style: GoogleFonts.inter(
+                        textStyle: TextStyle(
+                          color: const Color(0xFF00C677),
+                          fontSize: 40.sp,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             SizedBox(height: 80.h),
@@ -90,7 +126,7 @@ class _SignUpOtpverifyState extends State<SignUpOtpverify> {
                       ),
                     ),
                     SizedBox(height: 20.h),
-                    Text('5.00'),
+                    Text(formatTime(remainingTime)),
                     SizedBox(height: 30.h),
                     OtpTextField(
                       fieldHeight: 45.h,
