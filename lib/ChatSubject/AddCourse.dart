@@ -3,6 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:klawapplication/ChatSubject/LearnMore.dart';
 
+import '../About.dart';
+import '../Profile.dart';
+
 class AddCourse extends StatefulWidget {
   const AddCourse({super.key});
 
@@ -19,13 +22,22 @@ class _AddCourseState extends State<AddCourse> {
         toolbarHeight: 70.h,
         leading: Image.asset("assets/splash.png"),
         actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 10.w),
-            child: Icon(
-              Icons.list,
-              size: 38.sp,
-              color: Color(0xFFD9D9D9),
-            ),
+          Builder(
+            builder: (context) {
+              return InkWell(onTap: (){
+
+                Scaffold.of(context).openEndDrawer();
+              },
+                child: Padding(
+                  padding: EdgeInsets.only(right: 10.w),
+                  child: Icon(
+                    Icons.list,
+                    size: 38.sp,
+                    color: Color(0xFFD9D9D9),
+                  ),
+                ),
+              );
+            }
           )
         ],
         title: Text(
@@ -38,6 +50,66 @@ class _AddCourseState extends State<AddCourse> {
               height: 0.h,
             ),
           ),
+        ),
+      ),
+      endDrawer: Drawer(
+        backgroundColor: Color(0xFF006039),
+        child: ListView(
+          children: [
+            CircleAvatar(radius: 80.r,backgroundColor: Colors.white,
+                child: Image.asset("assets/splash.png",width: 155.w,height: 155.h,)),
+
+            ListTile(
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => Profile()));
+              },
+              title: Text(
+                'Setting',
+                style: GoogleFonts.inter(
+                  textStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.w700,
+                    height: 0.h,
+                  ),
+                ),
+              ),
+              trailing: Icon(Icons.arrow_forward_ios,color: Colors.white,),
+            ),
+            ListTile(
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => About()));
+              },
+              title: Text(
+                'About',
+                style: GoogleFonts.inter(
+                  textStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.w700,
+                    height: 0.h,
+                  ),
+                ),
+              ),
+              trailing: Icon(Icons.arrow_forward_ios,color: Colors.white,),
+            ),
+            ListTile(
+              title: Text(
+                'Review',
+                style: GoogleFonts.inter(
+                  textStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.w700,
+                    height: 0.h,
+                  ),
+                ),
+              ),
+              trailing: Icon(Icons.arrow_forward_ios,color: Colors.white,),
+            ),
+          ],
         ),
       ),
       body:SingleChildScrollView(

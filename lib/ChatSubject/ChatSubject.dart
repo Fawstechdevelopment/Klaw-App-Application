@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:klawapplication/About.dart';
 import 'package:klawapplication/ChatSubject/AddCourse.dart';
 import 'package:klawapplication/ChatSubject/Chat.dart';
+import 'package:klawapplication/Profile.dart';
 
 class ChatSubject extends StatefulWidget {
   const ChatSubject({super.key});
@@ -16,9 +18,10 @@ class _ChatSubjectState extends State<ChatSubject> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        shape:StadiumBorder(),
+        shape: StadiumBorder(),
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>AddCourse() ));
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (_) => AddCourse()));
         },
         backgroundColor: Colors.black, // Customize background color if needed
         child: Icon(
@@ -33,14 +36,21 @@ class _ChatSubjectState extends State<ChatSubject> {
         toolbarHeight: 70.h,
         leading: Image.asset("assets/splash.png"),
         actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 10.w),
-            child: Icon(
-              Icons.list,
-              size: 38.sp,
-              color: Color(0xFFD9D9D9),
-            ),
-          )
+          Builder(builder: (context) {
+            return InkWell(
+              onTap: () {
+                Scaffold.of(context).openEndDrawer();
+              },
+              child: Padding(
+                padding: EdgeInsets.only(right: 10.w),
+                child: Icon(
+                  Icons.list,
+                  size: 38.sp,
+                  color: Color(0xFFD9D9D9),
+                ),
+              ),
+            );
+          })
         ],
         title: Text(
           'KLAW',
@@ -52,6 +62,66 @@ class _ChatSubjectState extends State<ChatSubject> {
               height: 0.h,
             ),
           ),
+        ),
+      ),
+      endDrawer: Drawer(
+        backgroundColor: Color(0xFF006039),
+        child: ListView(
+          children: [
+            CircleAvatar(radius: 80.r,backgroundColor: Colors.white,
+                child: Image.asset("assets/splash.png",width: 155.w,height: 155.h,)),
+
+            ListTile(
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => Profile()));
+              },
+              title: Text(
+                'Setting',
+                style: GoogleFonts.inter(
+                  textStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.w700,
+                    height: 0.h,
+                  ),
+                ),
+              ),
+              trailing: Icon(Icons.arrow_forward_ios,color: Colors.white,),
+            ),
+            ListTile(
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => About()));
+              },
+              title: Text(
+                'About',
+                style: GoogleFonts.inter(
+                  textStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.w700,
+                    height: 0.h,
+                  ),
+                ),
+              ),
+              trailing: Icon(Icons.arrow_forward_ios,color: Colors.white,),
+            ),
+            ListTile(
+              title: Text(
+                'Review',
+                style: GoogleFonts.inter(
+                  textStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.w700,
+                    height: 0.h,
+                  ),
+                ),
+              ),
+              trailing: Icon(Icons.arrow_forward_ios,color: Colors.white,),
+            ),
+          ],
         ),
       ),
       body: SingleChildScrollView(
@@ -146,7 +216,12 @@ class _ChatSubjectState extends State<ChatSubject> {
                                     ),
                                   ),
                                 ),
-                                GestureDetector(onTap: (){ Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Chat() ));},
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (_) => Chat()));
+                                  },
                                   child: Padding(
                                     padding: EdgeInsets.only(left: 130.w),
                                     child: Container(
