@@ -54,10 +54,12 @@ class _AddCourseState extends State<AddCourse> {
       ),
       endDrawer: Drawer(
         backgroundColor: Color(0xFF006039),
-        child: ListView(
+        child: Column(
           children: [
+            SizedBox(height: 50.h,),
             CircleAvatar(radius: 80.r,backgroundColor: Colors.white,
                 child: Image.asset("assets/splash.png",width: 155.w,height: 155.h,)),
+            Spacer(),
 
             ListTile(
               onTap: () {

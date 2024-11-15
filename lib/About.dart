@@ -32,7 +32,7 @@ class _AboutState extends State<About> {
             Padding(
               padding:  EdgeInsets.all(16.sp),
               child: Text(
-                'sample Text....................................................................................',
+                'sample Text.............................................................................................................................................................',
                 style: GoogleFonts.inter(
                   textStyle: TextStyle(
                     color: Colors.white,

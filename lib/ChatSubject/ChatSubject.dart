@@ -66,61 +66,66 @@ class _ChatSubjectState extends State<ChatSubject> {
       ),
       endDrawer: Drawer(
         backgroundColor: Color(0xFF006039),
-        child: ListView(
+        child: Column(
           children: [
+            SizedBox(height: 50.h,),
             CircleAvatar(radius: 80.r,backgroundColor: Colors.white,
                 child: Image.asset("assets/splash.png",width: 155.w,height: 155.h,)),
+            Spacer(),
+            Column(mainAxisSize: MainAxisSize.min,
+  children: [
+  ListTile(
+    onTap: () {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => Profile()));
+    },
+    title: Text(
+      'Setting',
+      style: GoogleFonts.inter(
+        textStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 22.sp,
+          fontWeight: FontWeight.w700,
+          height: 0.h,
+        ),
+      ),
+    ),
+    trailing: Icon(Icons.arrow_forward_ios,color: Colors.white,),
+  ),
+  ListTile(
+    onTap: () {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => About()));
+    },
+    title: Text(
+      'About',
+      style: GoogleFonts.inter(
+        textStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 22.sp,
+          fontWeight: FontWeight.w700,
+          height: 0.h,
+        ),
+      ),
+    ),
+    trailing: Icon(Icons.arrow_forward_ios,color: Colors.white,),
+  ),
+  ListTile(
+    title: Text(
+      'Review',
+      style: GoogleFonts.inter(
+        textStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 22.sp,
+          fontWeight: FontWeight.w700,
+          height: 0.h,
+        ),
+      ),
+    ),
+    trailing: Icon(Icons.arrow_forward_ios,color: Colors.white,),
+  ),
+],)
 
-            ListTile(
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) => Profile()));
-              },
-              title: Text(
-                'Setting',
-                style: GoogleFonts.inter(
-                  textStyle: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22.sp,
-                    fontWeight: FontWeight.w700,
-                    height: 0.h,
-                  ),
-                ),
-              ),
-              trailing: Icon(Icons.arrow_forward_ios,color: Colors.white,),
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) => About()));
-              },
-              title: Text(
-                'About',
-                style: GoogleFonts.inter(
-                  textStyle: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22.sp,
-                    fontWeight: FontWeight.w700,
-                    height: 0.h,
-                  ),
-                ),
-              ),
-              trailing: Icon(Icons.arrow_forward_ios,color: Colors.white,),
-            ),
-            ListTile(
-              title: Text(
-                'Review',
-                style: GoogleFonts.inter(
-                  textStyle: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22.sp,
-                    fontWeight: FontWeight.w700,
-                    height: 0.h,
-                  ),
-                ),
-              ),
-              trailing: Icon(Icons.arrow_forward_ios,color: Colors.white,),
-            ),
           ],
         ),
       ),

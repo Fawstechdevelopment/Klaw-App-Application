@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:no_screenshot/no_screenshot.dart';
 class Chat extends StatefulWidget {
   const Chat({super.key});
 
@@ -22,6 +22,20 @@ class _ChatState extends State<Chat> {
       });
     }
   }
+
+  final _noScreenshot = NoScreenshot.instance;
+
+  void disableScreenshot() async {
+    bool result = await _noScreenshot.screenshotOff();
+    debugPrint('Screenshot Off: $result');
+  }
+@override
+  void initState() {
+
+  disableScreenshot();
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {

@@ -61,28 +61,25 @@ class _SignUpOtpverifyState extends State<SignUpOtpverify> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 150.h), // Adjust top spacing as needed
-            Center(
-              child: Stack(
-                children: [
-                  SizedBox(width: 155.w,
-                    height: 215.h,
-                    child: Image.asset("assets/splash.png",  width: 155.w,
-                      height: 155.h,),
-                  ),
-                  Positioned(left: 18.w,top: 150.h,
-                    child: Text(
-                      'KLAW',
-                      style: GoogleFonts.inter(
-                        textStyle: TextStyle(
-                          color: const Color(0xFF00C677),
-                          fontSize: 40.sp,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                SizedBox(width: 155.w,
+                  height: 215.h,
+                  child: Image.asset("assets/splash.png",  width: 155.w,
+                    height: 155.h,),
+                ),
+                Text(
+                  'KLAW',
+                  style: GoogleFonts.inter(
+                    textStyle: TextStyle(
+                      color: const Color(0xFF00C677),
+                      fontSize: 40.sp,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             SizedBox(height: 80.h),
             Container(

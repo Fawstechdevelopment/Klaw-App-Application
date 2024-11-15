@@ -279,7 +279,8 @@ class _LoginState extends State<Login> {
               child: SizedBox(
                   width: 220.w,
                   height: 22.h,
-                  child: Row(
+                  child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment:CrossAxisAlignment.center,
                     children: [
                       Text(
                         'Don’t have a account ? ',

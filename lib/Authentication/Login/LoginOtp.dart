@@ -14,6 +14,10 @@ class LoginOtp extends StatefulWidget {
 }
 
 class _LoginOtpState extends State<LoginOtp> {
+  bool phoneSubmitted = false;
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController otpController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,10 +67,11 @@ class _LoginOtpState extends State<LoginOtp> {
                   ),
                 ),
               ),
-            ), SizedBox(height: 10.h),
+            ),
+            SizedBox(height: 10.h),
             Center(
               child: Text(
-                'Enter your email and password',
+                'Enter your phone number',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.inter(
                   textStyle: TextStyle(
@@ -78,7 +83,7 @@ class _LoginOtpState extends State<LoginOtp> {
               ),
             ),
             Padding(
-              padding:  EdgeInsets.only(left: 75.w,top: 62.h),
+              padding: EdgeInsets.only(left: 75.w, top: 62.h),
               child: SizedBox(
                 width: 140.w,
                 height: 26.h,
@@ -101,6 +106,7 @@ class _LoginOtpState extends State<LoginOtp> {
                 width: 259.w,
                 height: 80.h,
                 child: TextField(
+                  controller: phoneController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
@@ -121,59 +127,69 @@ class _LoginOtpState extends State<LoginOtp> {
                 ),
               ),
             ),
-            Padding(
-              padding:  EdgeInsets.only(left: 50.w),
-              child: SizedBox(
-                width: 100.w,
-                height: 24.h,
-                child: Text(
-                  'OTP',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.inter(
-                    textStyle: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w300,
-                      height: 0.09.h,
-                    ),),
-                ),
-              ),
-            ),
-            Center(
-              child: SizedBox(
-                width: 259.w,
-                height: 80.h,
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    fillColor: Colors.white,
-                    filled: true,
-                    hintText: '*****',
-                    hintStyle: GoogleFonts.inter(
+            if (phoneSubmitted) ...[
+              Padding(
+                padding: EdgeInsets.only(left: 50.w),
+                child: SizedBox(
+                  width: 100.w,
+                  height: 24.h,
+                  child: Text(
+                    'OTP',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.inter(
                       textStyle: TextStyle(
                         color: Colors.black,
-                        fontSize: 14.sp,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w300,
+                        height: 0.09.h,
                       ),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.r),
                     ),
                   ),
                 ),
               ),
-            ),
-            GestureDetector(onTap: (){ Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Forgotpassword() ));},
+              Center(
+                child: SizedBox(
+                  width: 259.w,
+                  height: 80.h,
+                  child: TextField(
+                    controller: otpController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      filled: true,
+                      hintText: '*****',
+                      hintStyle: GoogleFonts.inter(
+                        textStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.r),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => Forgotpassword()),
+                );
+              },
               child: Padding(
-                padding:  EdgeInsets.only(right: 60.w),
-                child: Align(alignment: Alignment.centerRight,
+                padding: EdgeInsets.only(right: 60.w),
+                child: Align(
+                  alignment: Alignment.centerRight,
                   child: SizedBox(
                     width: 128.w,
                     height: 18.h,
                     child: Opacity(
-                      opacity: 0.50.sp,
+                      opacity: 0.50,
                       child: Text(
-                        'ForgotPassword ?',
+                        'Forgot Password?',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.inter(
                           textStyle: TextStyle(
@@ -181,7 +197,8 @@ class _LoginOtpState extends State<LoginOtp> {
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w500,
                             height: 0.09.h,
-                          ),),
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -189,23 +206,30 @@ class _LoginOtpState extends State<LoginOtp> {
               ),
             ),
             SizedBox(height: 37.h),
-            GestureDetector(  onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => Bottomnavigation()));
-            },
+            GestureDetector(
+              onTap: () {
+                if (!phoneSubmitted) {
+                  setState(() {
+                    phoneSubmitted = true; // Show OTP field on submit
+                  });
+                } else if (otpController.text.isNotEmpty) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => Bottomnavigation()),
+                  );
+                }
+              },
               child: Center(
                 child: Container(
                   width: 165.w,
                   height: 42.h,
                   decoration: ShapeDecoration(
                     color: Color(0xFF006039),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
-                  ),child: SizedBox(
-                  width: 57.w,
-                  height: 17.h,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.r)),
+                  ),
                   child: Center(
                     child: Text(
-                      'submit',
+                      'Submit',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
@@ -215,7 +239,7 @@ class _LoginOtpState extends State<LoginOtp> {
                       ),
                     ),
                   ),
-                ),),
+                ),
               ),
             ),
             SizedBox(height: 10.h),
@@ -265,7 +289,8 @@ class _LoginOtpState extends State<LoginOtp> {
               child: SizedBox(
                 width: 220.w,
                 height: 22.h,
-                child:  Row(
+                child:  Row(mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment:CrossAxisAlignment.center,
                   children: [
                     Text(
                       'Don’t have a account ? ',
@@ -278,7 +303,7 @@ class _LoginOtpState extends State<LoginOtp> {
                     ),
                     GestureDetector(onTap: (){ Navigator.of(context).push(MaterialPageRoute(builder: (_)=> SignupNumberFeild()));},
                       child: Text(
-                         'Sign up',
+                        'Sign up',
                         style: GoogleFonts.inter(
                           textStyle: TextStyle(
                             color: Color(0xFF006039),

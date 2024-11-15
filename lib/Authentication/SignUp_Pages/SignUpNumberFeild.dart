@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -23,28 +24,25 @@ class _SignupNumberFeildState extends State<SignupNumberFeild> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             SizedBox(height: 150.h), // Adjust top spacing as needed
-            Center(
-              child: Stack(
-                children: [
-                  SizedBox(width: 155.w,
-                    height: 215.h,
-                    child: Image.asset("assets/splash.png",  width: 155.w,
-                      height: 155.h,),
-                  ),
-                  Positioned(left: 18.w,top: 150.h,
-                    child: Text(
-                      'KLAW',
-                      style: GoogleFonts.inter(
-                        textStyle: TextStyle(
-                          color: const Color(0xFF00C677),
-                          fontSize: 40.sp,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                SizedBox(width: 155.w,
+                  height: 215.h,
+                  child: Image.asset("assets/splash.png",  width: 155.w,
+                    height: 155.h,),
+                ),
+                Text(
+                  'KLAW',
+                  style: GoogleFonts.inter(
+                    textStyle: TextStyle(
+                      color: const Color(0xFF00C677),
+                      fontSize: 40.sp,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
 
             SizedBox(height: 80.h),
@@ -140,7 +138,9 @@ class _SignupNumberFeildState extends State<SignupNumberFeild> {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10.r),
                               ),
-                            ),
+                            ),inputFormatters: [
+                            LengthLimitingTextInputFormatter(2), // Limits to 3 characters
+                          ],
                           ),
                         ),
                         SizedBox(width: 10.w),

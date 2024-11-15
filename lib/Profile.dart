@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -11,6 +14,39 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   String selectedPlan = 'Plan 1'; // Initial selected plan
+  final Map<String, Color> planColors = {
+    'Plan 1':Colors.green,
+    'Plan 2': Color(0xFFFFBD00),
+    'Plan 3': Colors.blue,
+  };
+
+
+  File? image;
+  final picker = ImagePicker();
+
+  Future getImageGallery() async {
+    final pickedFile =
+    await picker.pickImage(source: ImageSource.gallery, imageQuality: 80);
+    setState(() {
+      if (pickedFile != null) {
+        image = File(pickedFile.path);
+        Navigator.of(context).pop();
+      }
+    });
+  }
+
+  Future getImageCamera() async {
+    final pickedFile =
+    await picker.pickImage(source: ImageSource.camera, imageQuality: 80);
+    setState(() {
+      if (pickedFile != null) {
+        image = File(pickedFile.path);
+
+        Navigator.of(context).pop();
+      }
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,38 +70,129 @@ class _ProfileState extends State<Profile> {
             // Profile picture with edit icon
             Stack(
               children: [
-                Container(
-                  width: 116.w,
-                  height: 116.h,
-                  decoration: ShapeDecoration(
-                    image: DecorationImage(
-                      image:
-                          AssetImage("assets/splash.png"),
-                      fit: BoxFit.fill,
-                    ),
-                    shape: OvalBorder(
-                      side: BorderSide(
-                        width: 3.w,
-                        strokeAlign: BorderSide.strokeAlignOutside,
-                        color: Color(0xFFFFBD00),
+              Container(
+              width: 116.w,
+              height: 116.h,
+              decoration: ShapeDecoration(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(60.r),
+                  side: BorderSide(
+                    width: 3.w,
+                    strokeAlign: BorderSide.strokeAlignOutside,
+                    color: planColors[selectedPlan] ?? Color(0xFFFFBD00),
+                  ),
+                ),
+              ),
+              child: image != null
+                  ? Padding(
+                    padding:  EdgeInsets.all(5.0.sp),
+                    child: CircleAvatar(
+                                    backgroundImage: FileImage(image!),
+                                    radius: 58.r,
+                                    backgroundColor: Colors.transparent,
+                                  ),
+                  )
+                  : Image.asset("assets/splash.png", fit: BoxFit.cover),
+            ),
+
+        GestureDetector(
+                  onTap: (){
+                    showModalBottomSheet<void>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return SizedBox(
+                          height: 200,
+                          child: Center(
+                            child: Row(
+                              children: [
+                                SizedBox(width: 50.w),
+                                InkWell(
+                                  onTap: () {
+                                    getImageCamera();
+                                  },
+                                  child: Container(
+                                    width: 150.w,
+                                    height: 150.h,
+                                    decoration: ShapeDecoration(
+                                        color:Color(0xFF006039),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(
+                                                10.r))),
+                                    child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.camera_alt_outlined,
+                                          size: 50.sp,color: Colors.white,
+                                        ),
+                                        Text(
+                                            'Take a photo',
+                                            style: GoogleFonts.poppins(
+                                              textStyle: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16.sp,
+                                                fontWeight: FontWeight.w400,
+                                              ),)
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 30.w),
+                                InkWell(
+                                  onTap: () {
+                                    getImageGallery();
+                                  },
+                                  child: Container(
+                                    width: 150.w,
+                                    height: 150.h,
+                                    decoration: ShapeDecoration(
+                                        color:Color(0xFF006039),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(
+                                                10.r))),
+                                    child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.photo_outlined,
+                                          size: 50.sp,color: Colors.white,
+                                        ),
+                                        Text(
+                                            'Take from \n   Gallery',
+                                            style: GoogleFonts.poppins(
+                                              textStyle: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16.sp,
+                                                fontWeight: FontWeight.w400,
+                                              ),)
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: Padding(
+                    padding:  EdgeInsets.only(top: 80.h,left: 90.h),
+                    child: Container(
+                      width: 34.w,
+                      height: 34.h,
+                      decoration: ShapeDecoration(color: Colors.black87,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(6.r))),
+                      child: Icon(
+                        Icons.camera_alt_rounded,
+                        color: Colors.white,
                       ),
                     ),
                   ),
                 ),
-                Padding(
-                  padding:  EdgeInsets.only(top: 80.h,left: 90.h),
-                  child: Container(
-                    width: 34.w,
-                    height: 34.h,
-                    decoration: ShapeDecoration(color: Colors.black87,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6.r))),
-                    child: Icon(
-                      Icons.camera_alt_rounded,
-                      color: Colors.white,
-                    ),
-                  ),
-                )
               ],
             ),
             SizedBox(height: 50.h),
@@ -79,11 +206,11 @@ Padding(
                 children: [
                   SizedBox(
                     width: 114.w,
-                    height: 18.h,
+                    height: 23.h,
                     child: Opacity(
                       opacity: 0.80,
                       child: Text(
-                        'NAME             :',
+                        'NAME              :',
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                           color: Color(0xFF323232),
@@ -120,11 +247,11 @@ Padding(
                 children: [
                   SizedBox(
                     width: 114.w,
-                    height: 18.h,
+                    height: 25.h,
                     child: Opacity(
                       opacity: 0.80,
                       child: Text(
-                          'Department :',
+                          'Department  :',
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                               color: Color(0xFF323232),
@@ -207,7 +334,7 @@ Padding(
                     child: Opacity(
                       opacity: 0.80,
                       child: Text(
-                          'College         :',
+                          'College          :',
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                               color: Color(0xFF323232),
@@ -242,7 +369,7 @@ Padding(
               child: Row(
                 children: [
                   SizedBox(
-                    width: 117.w,
+                    width: 114.w,
                     height: 25.h,
                     child: Opacity(
                       opacity: 0.80,
@@ -324,12 +451,12 @@ Padding(
               child: Row(
                 children: [
                   SizedBox(
-                    width: 118.w,
+                    width: 114.w,
                     height: 26.h,
                     child: Opacity(
                       opacity: 0.80,
                       child: Text(
-                          'Current Plan  :',
+                          'Current Plan :',
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                               color: Color(0xFF323232),
@@ -365,12 +492,12 @@ Padding(
               child: Row(
                 children: [
                   SizedBox(
-                    width: 142.w,
+                    width: 114.w,
                     height: 26.h,
                     child: Opacity(
                       opacity: 0.80,
                       child: Text(
-                          'Change Plan      :',
+                          'Change Plan :',
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                               color: Color(0xFF323232),

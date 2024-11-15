@@ -25,28 +25,25 @@ class _SignupdetailsState extends State<Signupdetails> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             SizedBox(height: 180.h), // Adjust top spacing as needed
-            Center(
-              child: Stack(
-                children: [
-                  SizedBox(width: 155.w,
-                    height: 215.h,
-                    child: Image.asset("assets/splash.png",  width: 155.w,
-                      height: 155.h,),
-                  ),
-                  Positioned(left: 18.w,top: 150.h,
-                    child: Text(
-                      'KLAW',
-                      style: GoogleFonts.inter(
-                        textStyle: TextStyle(
-                          color: const Color(0xFF00C677),
-                          fontSize: 40.sp,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                SizedBox(width: 155.w,
+                  height: 215.h,
+                  child: Image.asset("assets/splash.png",  width: 155.w,
+                    height: 155.h,),
+                ),
+                Text(
+                  'KLAW',
+                  style: GoogleFonts.inter(
+                    textStyle: TextStyle(
+                      color: const Color(0xFF00C677),
+                      fontSize: 40.sp,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             SizedBox(height: 40.h),
             Container(
